@@ -1,7 +1,7 @@
 // requiring the node modules
 const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
+const https = require("https");
 
 //using the modules
 const app = express();
@@ -12,7 +12,16 @@ app.set("view engine", "ejs");
 
 //declaring paths
 app.get("/", (req, res) => {
-    res.send("<h1>hello</h1>");
+
+    const url = "https://api.adviceslip.com/advice";
+
+    https.get(url, (resopnse) => {
+        resopnse.on("data", (data) => {
+            const advice = JSON.parse(data);
+            res.render("index", {adNo: advice.slip.id, adContent: advice.slip.advice});
+        })
+    })
+
 })
 
 
