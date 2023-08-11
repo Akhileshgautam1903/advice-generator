@@ -1,6 +1,8 @@
 # advice-generator
 This is a simple website that gives you random advice.
 
+Live : https://advice-generator-fw1b.onrender.com/
+
 ## How to set up 
 First clone this repository
 
